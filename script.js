@@ -28,8 +28,8 @@ var Ai = {
         return {
             width: 18,
             height: 180,
-            x: side === 'left' ? 150 : this.canvas.width - 150,
-            y: (this.canvas.height / 2) - 35,
+            x: side === 'left' ? 50 : this.canvas.width - 50 - 18,
+            y: (this.canvas.height / 2) - 90,
             score: 0,
             move: DIRECTION.IDLE,
             speed: 8
@@ -39,14 +39,12 @@ var Ai = {
 
 var Game = {
     initialize: function () {
-        this.canvas = document.querySelector('canvas');
+        this.canvas = document.getElementById('gameCanvas');
         this.context = this.canvas.getContext('2d');
 
-        this.canvas.width = 1400;
-        this.canvas.height = 1000;
-
-        this.canvas.style.width = (this.canvas.width / 2) + 'px';
-        this.canvas.style.height = (this.canvas.height / 2) + 'px';
+        // Set canvas size to fit the viewport
+        this.canvas.width = window.innerWidth * 0.9; // Adjust the width as needed
+        this.canvas.height = window.innerHeight * 0.7; // Adjust the height as needed
 
         this.player = Ai.new.call(this, 'left');
         this.ai = Ai.new.call(this, 'right');
@@ -63,20 +61,20 @@ var Game = {
     },
 
     endGameMenu: function (text) {
-        Pong.context.font = '45px Courier New';
-        Pong.context.fillStyle = this.color;
+        this.context.font = '45px Courier New';
+        this.context.fillStyle = this.color;
 
-        Pong.context.fillRect(
-            Pong.canvas.width / 2 - 350,
-            Pong.canvas.height / 2 - 48,
+        this.context.fillRect(
+            this.canvas.width / 2 - 350,
+            this.canvas.height / 2 - 48,
             700,
             100
         );
 
-        Pong.context.fillStyle = '#ffffff';
-        Pong.context.fillText(text,
-            Pong.canvas.width / 2,
-            Pong.canvas.height / 2 + 15
+        this.context.fillStyle = '#ffffff';
+        this.context.fillText(text,
+            this.canvas.width / 2,
+            this.canvas.height / 2 + 15
         );
 
         setTimeout(function () {
@@ -117,7 +115,7 @@ var Game = {
             if (Pong._turnDelayIsOver.call(this) && this.turn) {
                 this.ball.moveX = this.turn === this.player ? DIRECTION.LEFT : DIRECTION.RIGHT;
                 this.ball.moveY = [DIRECTION.UP, DIRECTION.DOWN][Math.round(Math.random())];
-                this.ball.y = Math.floor(Math.random() * this.canvas.height - 200) + 200;
+                this.ball.y = Math.floor(Math.random() * (this.canvas.height - 200)) + 200;
                 this.turn = null;
             }
 
@@ -241,25 +239,25 @@ var Game = {
             );
         }
 
-        this.context.font = '120px Courier New';
+        this.context.font = '20px Courier New'; // Adjusted font size for better fit
         this.context.textAlign = 'center';
 
         this.context.fillText(
             this.player.score.toString(),
-            (this.canvas.width / 2) - 300,
-            200
+            (this.canvas.width / 2) - 80,
+            30
         );
 
         this.context.fillText(
             this.ai.score.toString(),
-            (this.canvas.width / 2) + 300,
-            200
+            (this.canvas.width / 2) + 80,
+            30
         );
 
         this.context.fillText(
             'Round ' + (Pong.round + 1),
             this.canvas.width / 2,
-            35
+            20
         );
     },
 
