@@ -5,45 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #35424a, #655ec4);
-            background-size: 400% 400%;
-            color: #333;
+        /* Basic styling */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ecf0f1;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            animation: gradientAnimation 15s ease infinite;
             flex-direction: column;
         }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .loading-percentage {
-            font-size: 24px;
+        /* Header styling */
+        .header {
+            background-color: #3498db;
             color: #fff;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
         }
 
+        /* Container styling */
         .about-container {
             background-color: #ffffff;
-            border-radius: 10px;
+            border-radius: 0 0 8px 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             padding: 20px;
             text-align: center;
-            opacity: 0;
-            transition: opacity 1s ease-in;
             width: 90%;
         }
 
+        /* Progress bar styling */
         .progress-bar-container {
             width: 100%;
             background-color: #ddd;
@@ -56,28 +58,20 @@
         .progress-bar {
             width: 0%;
             height: 8px;
-            background-color: #e8491d;
+            background-color: #3498db;
             border-radius: 5px;
             transition: width 0.1s linear;
         }
 
         h1 {
-            color: #35424a;
-            margin-bottom: 20px;
-            opacity: 0;
-            transition: opacity 1s ease;
-            font-size: 24px;
+            font-size: 28px;
         }
 
         p {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
-        }
-
-        .highlight {
-            color: #e8491d;
-            font-weight: bold;
+            color: #555;
         }
 
         .skills-list {
@@ -87,24 +81,15 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            opacity: 0;
-            transition: opacity 1s ease;
             flex-wrap: wrap;
         }
 
         .skills-list li {
-            background-color: #35424a;
+            background-color: #2980b9;
             color: #fff;
             padding: 10px;
-            border-radius: 5px;
-            transform: translateY(20px);
-            transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
+            border-radius: 4px;
             font-size: 14px;
-        }
-
-        .skills-list li:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .contact-link {
@@ -112,22 +97,19 @@
             margin-top: 20px;
             text-decoration: none;
             color: #fff;
-            background-color: #e8491d;
+            background-color: #3498db;
             padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            opacity: 0;
-            transition: opacity 1s ease;
+            border-radius: 4px;
             font-size: 16px;
         }
 
         .contact-link:hover {
-            background-color: #d7381f;
+            background-color: #2980b9;
         }
 
         @media (max-width: 600px) {
             h1 {
-                font-size: 20px;
+                font-size: 24px;
             }
 
             p {
@@ -147,8 +129,10 @@
     </style>
 </head>
 <body>
-    <!-- Loading Percentage Display -->
-    <div class="loading-percentage" id="loading-percentage">1%</div>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>About Me</h1>
+    </div>
 
     <div class="about-container">
         <!-- Progress Bar -->
@@ -156,14 +140,14 @@
             <div class="progress-bar" id="progress-bar"></div>
         </div>
 
-        <h1 id="about-title">About Me</h1>
         <p id="typewriter"></p>
         <ul class="skills-list" id="skills-list">
             <li>JavaScript</li>
             <li>PHP</li>
-            <li>Graphic Design</li>
+            <li>Basic infrastructure</li>
+            <li>I.T. Helpdesk</li>
         </ul>
-        <a href="https://tayrawn.github.io/" class="contact-link" id="contact-link">View My GitHub</a>
+        <a href="https://tayrawn.github.io/" class="contact-link" id="contact-link">View My Dashboard</a>
     </div>
 
     <script>
@@ -172,7 +156,6 @@
         let i = 0;
         const speed = 50; // Speed of typing in milliseconds
         const progressBar = document.getElementById("progress-bar");
-        const loadingPercentage = document.getElementById("loading-percentage");
         const typewriter = document.getElementById("typewriter");
 
         function typeWriter() {
@@ -180,25 +163,22 @@
                 typewriter.innerHTML += text.charAt(i);
                 i++;
 
-                // Update progress bar width and percentage
+                // Update progress bar width
                 const progress = (i / text.length) * 100;
                 progressBar.style.width = progress + '%';
-                loadingPercentage.innerText = Math.floor(progress) + '%';
 
                 setTimeout(typeWriter, speed);
             } else {
                 // Reveal the rest of the content after typing is complete
-                document.getElementById('about-title').style.opacity = 1;
                 document.getElementById('skills-list').style.opacity = 1;
                 document.getElementById('contact-link').style.opacity = 1;
-                loadingPercentage.style.display = 'none'; // Hide the percentage after completion
             }
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            document.querySelector('.about-container').style.opacity = 1;
             typeWriter();
         });
     </script>
 </body>
 </html>
+
