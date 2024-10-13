@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-Portfolio</title>
+    <title>Message</title>
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: #2a2334;
-            color: #333;
+            background-color: #d3d7e6;
+            color: #c7d2e4;
             scroll-behavior: smooth;
         }
 
@@ -26,11 +26,11 @@
         }
 
         header {
-            background: #35424a;
-            color: #725cd3;
+            background: #3498db; /* Blue background */
+            color: #ffffff;
             padding-top: 30px;
             min-height: 70px;
-            border-bottom: #e8491d 3px solid;
+            border-bottom: #5095bd 3px solid;
         }
 
         header a {
@@ -42,7 +42,7 @@
         }
 
         header a:hover {
-            color: #e8491d;
+            color: #5ca7da;
         }
 
         header ul {
@@ -86,7 +86,7 @@
         }
 
         footer {
-            background: #2a2334;
+            background: #3498db; /* Blue background for footer */
             color: #ffffff;
             text-align: center;
             padding: 10px 0;
@@ -95,23 +95,20 @@
         }
 
         #contact a {
-            color: #e8491d;
+            color: #141312;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         #contact a:hover {
-            color: #35424a;
+            color: #161718;
         }
 
+        
+    
         .active-nav {
             font-weight: bold;
-            color: #e8491d !important;
-        }
-
-        /* Rotate sections on hover */
-        .section.rotate {
-            transform: rotateY(180deg);
+            color: #c9d5eb !important;
         }
 
         /* Styling for the contact form */
@@ -126,7 +123,7 @@
             max-width: 600px;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ddd;
+            border: 1px solid #363230;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
@@ -135,17 +132,16 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #e8491d;
+            background-color: #56607e;
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         form button:hover {
-            background-color: #d7381f;
+            background-color: #225177;
         }
 
-        /* Styling for contact details */
         .contact-details {
             text-align: center;
         }
@@ -169,11 +165,25 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Message Me</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active-nav">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <!-- Other sections -->
 
     <section id="contact" class="section">
         <div class="container">
-          <a href="index.html"><h2>Contact</h2></a>
+            <h2>Contact</h2>
             <form action="https://formspree.io/f/mdknlbwo" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
@@ -204,39 +214,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('nav ul li a');
-
-            // Intersection Observer for fade-in effect
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
             sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // Hover effect to rotate sections
-            navLinks.forEach(link => {
-                link.addEventListener('mouseover', function() {
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    targetSection.classList.add('rotate');
-                });
-
-                link.addEventListener('mouseout', function() {
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    targetSection.classList.remove('rotate');
-                });
+                section.style.opacity = 1;
+                section.style.transform = 'translateY(0)';
             });
         });
     </script>
 </body>
 </html>
+
