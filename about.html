@@ -13,19 +13,43 @@
             font-family: Arial, sans-serif;
         }
 
+        /* Light and Dark mode variables */
+        :root {
+            --background-color: #ecf0f1;
+            --text-color: #333;
+            --container-bg-color: #fff;
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --progress-bg-color: #ddd;
+            --skills-bg-color: #2980b9;
+            --footer-bg-color: #3498db;
+        }
+
+        .dark-mode {
+            --background-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --container-bg-color: #34495e;
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --progress-bg-color: #444;
+            --skills-bg-color: #3e5c74;
+            --footer-bg-color: #1a252f;
+        }
+
         body {
-            background-color: #ecf0f1;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Header styling */
         .header {
-            background-color: #3498db;
+            background-color: var(--primary-color);
             color: #fff;
             padding: 20px;
             border-radius: 8px 8px 0 0;
@@ -36,19 +60,20 @@
 
         /* Container styling */
         .about-container {
-            background-color: #ffffff;
+            background-color: var(--container-bg-color);
             border-radius: 0 0 8px 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             padding: 20px;
             text-align: center;
             width: 90%;
+            transition: background-color 0.3s;
         }
 
         /* Progress bar styling */
         .progress-bar-container {
             width: 100%;
-            background-color: #ddd;
+            background-color: var(--progress-bg-color);
             border-radius: 5px;
             margin-bottom: 20px;
             overflow: hidden;
@@ -58,7 +83,7 @@
         .progress-bar {
             width: 0%;
             height: 8px;
-            background-color: #3498db;
+            background-color: var(--primary-color);
             border-radius: 5px;
             transition: width 0.1s linear;
         }
@@ -71,7 +96,7 @@
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
-            color: #555;
+            color: var(--text-color);
         }
 
         .skills-list {
@@ -85,11 +110,12 @@
         }
 
         .skills-list li {
-            background-color: #2980b9;
+            background-color: var(--skills-bg-color);
             color: #fff;
             padding: 10px;
             border-radius: 4px;
             font-size: 14px;
+            transition: background-color 0.3s;
         }
 
         .contact-link {
@@ -97,16 +123,30 @@
             margin-top: 20px;
             text-decoration: none;
             color: #fff;
-            background-color: #3498db;
+            background-color: var(--primary-color);
             padding: 10px 20px;
             border-radius: 4px;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         .contact-link:hover {
-            background-color: #2980b9;
+            background-color: var(--secondary-color);
         }
 
+        /* Footer styling */
+        footer {
+            background-color: var(--footer-bg-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             h1 {
                 font-size: 24px;
@@ -126,9 +166,25 @@
                 font-size: 14px;
             }
         }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <label>
+            <input type="checkbox" id="darkModeToggle">
+           
+        </label>
+    </div>
+
     <!-- Header Section -->
     <div class="header">
         <h1>About Me</h1>
@@ -150,6 +206,10 @@
         <a href="https://tayrawn.github.io/" class="contact-link" id="contact-link">View My Dashboard</a>
     </div>
 
+    <footer>
+        <p>&copy; 2024 All rights reserved.</p>
+    </footer>
+
     <script>
         // Typewriter effect with progress bar and loading percentage synchronization
         const text = "Hello! I'm Tyron Aguilocho, a passionate IT professional with a focus on web development. With a strong background in JavaScript and PHP, I enjoy building dynamic and interactive web applications. My skills also extend to graphic design, allowing me to create visually appealing websites that not only function well but also look great. I am currently pursuing a Bachelor of Science in Information Technology at AMA Computer College. Alongside my studies, I have gained valuable experience in the professional field.";
@@ -157,26 +217,34 @@
         const speed = 50; // Speed of typing in milliseconds
         const progressBar = document.getElementById("progress-bar");
         const typewriter = document.getElementById("typewriter");
+        const darkModeToggle = document.getElementById('darkModeToggle');
 
         function typeWriter() {
             if (i < text.length) {
                 typewriter.innerHTML += text.charAt(i);
                 i++;
-
-                // Update progress bar width
                 const progress = (i / text.length) * 100;
                 progressBar.style.width = progress + '%';
-
                 setTimeout(typeWriter, speed);
-            } else {
-                // Reveal the rest of the content after typing is complete
-                document.getElementById('skills-list').style.opacity = 1;
-                document.getElementById('contact-link').style.opacity = 1;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', () => {
             typeWriter();
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+        });
+
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
         });
     </script>
 </body>
