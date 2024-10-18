@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Roulette</title>
+    <style>
+        /* Basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .roulette-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .wheel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: transform 2s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .spin-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .spin-button:hover {
+            background-color: #2980b9;
+        }
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #3498db;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .input-container input, .input-container button {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .winner-display, .ranking-display {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .ranking-display {
+            margin-top: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .ranking-display ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="labelsInput">Enter names (comma separated):</label>
+        <input type="text" id="labelsInput" placeholder="e.g., Alice, Bob, Charlie, Dave">
+        <button onclick="createWheel()">Create Wheel</button>
+    </div>
+    <div class="roulette-container">
+        <div class="pointer"></div>
+        <div class="wheel" id="wheel"></div>
+    </div>
+    <button class="spin-button" onclick="spin()">Spin</button>
+    <div class="winner-display" id="winnerDisplay"></div>
+    <div class="ranking-display" id="rankingDisplay">
+        <h3>Winners Ranking</h3>
+        <ul id="rankingList"></ul>
+    </div>
+
+    <script>
+        let currentLabels = [];
+        let wheelRotation = 0;
+        let winnersCount = {};
+
+        function createWheel() {
+            const labelsInput = document.getElementById('labelsInput').value;
+            currentLabels = labelsInput.split(',').map(label => label.trim()).filter(label => label);
+
+            if (currentLabels.length < 2) {
+                alert('Please enter at least two names.');
+                return;
+            }
+
+            updateWheel();
+            winnersCount = {};
+            updateRanking();
+        }
+
+        function updateWheel() {
+            const wheel = document.getElementById('wheel');
+            const sliceAngle = 360 / currentLabels.length;
+            let wheelBackground = 'conic-gradient(';
+
+            const colors = ['#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e91e63', '#1abc9c'];
+            
+            currentLabels.forEach((label, index) => {
+                const startAngle = index * sliceAngle;
+                const endAngle = startAngle + sliceAngle;
+                const color = colors[index % colors.length];
+
+                wheelBackground += `${color} ${startAngle}deg ${endAngle}deg${index < currentLabels.length - 1 ? ', ' : ''}`;
+            });
+
+            wheelBackground += ')';
+            wheel.style.background = wheelBackground;
+        }
+
+        function spin() {
+            if (currentLabels.length < 2) {
+                alert('Please create the wheel with at least two names.');
+                return;
+            }
+
+            const wheel = document.getElementById('wheel');
+            const randomDegree = Math.floor(3600 + Math.random() * 360);
+            wheelRotation = randomDegree;
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+
+            setTimeout(() => {
+                displayWinner();
+            }, 2000); // Wait for the new spinning animation time to finish
+        }
+
+        function displayWinner() {
+            const sliceAngle = 360 / currentLabels.length;
+            const rotationDegrees = wheelRotation % 360;
+            const winningIndex = Math.floor((360 - rotationDegrees) / sliceAngle) % currentLabels.length;
+            const winner = currentLabels[winningIndex];
+
+            if (winnersCount[winner]) {
+                winnersCount[winner]++;
+            } else {
+                winnersCount[winner] = 1;
+            }
+
+            currentLabels.splice(winningIndex, 1);
+
+            const winnerDisplay = document.getElementById('winnerDisplay');
+            winnerDisplay.textContent = `Winner: ${winner}`;
+
+            updateWheel();
+            updateRanking();
+
+            if (currentLabels.length < 2) {
+                alert("Not enough names left to continue. Please reset the game.");
+            }
+        }
+
+        function updateRanking() {
+            const rankingList = document.getElementById('rankingList');
+            rankingList.innerHTML = '';
+
+            const sortedWinners = Object.entries(winnersCount).sort((a, b) => b[1] - a[1]);
+
+            sortedWinners.forEach(([name, count]) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${name}: ${count} win(s)`;
+                rankingList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
