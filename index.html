@@ -135,9 +135,10 @@
         /* Responsive Sidebar */
         @media (max-width: 768px) {
             .sidebar {
+                position: sticky;
+                top: 0;
                 width: 100%;
                 height: auto;
-                position: relative;
             }
             .main-content {
                 margin-left: 0;
@@ -173,7 +174,7 @@
             <div class="tabs">
               <div class="tab active" data-tab="project1">Project 1</div>
                 <a href="Roulette.html">  <div class="tab" data-tab="project2">Project 2</div></a>
-             <a href="https://ptlaweca.tech/govfererenationalhighschool/index.php"><div class="tab" data-tab="project3">Project 3</div></a>
+                <a href="https://ptlaweca.tech/govfererenationalhighschool/index.php"><div class="tab" data-tab="project3">Project 3</div></a>
             </div>
             <div class="tab-content active" id="project1">
                 <h2>Project 1</h2>
@@ -182,12 +183,12 @@
             <div class="tab-content" id="project2">
                 <h2>Project 2</h2>
                 <p>Description and details of Project 2.</p>
-                <p> Prototype Roulette </p>
+                <p>Prototype Roulette</p>
             </div>
             <div class="tab-content" id="project3">
                 <h2>Project 3</h2>
-                <p>Description and details of Project 3 .</p>
-                <p> High School Managment Informantion System</p>
+                <p>Description and details of Project 3.</p>
+                <p>High School Management Information System</p>
             </div>
         </section>
         <section class="certifications">
@@ -195,16 +196,14 @@
             <iframe src="certificate merge.pdf" width="100%" height="500px">
                 Your browser does not support PDFs. <a href="certificate merge.pdf">Download the PDF</a>.
             </iframe>
-        
         </section>
-        
     </main>
 
     <!-- Dark Mode Toggle -->
     <div class="dark-mode-toggle">
         <label>
             <input type="checkbox" id="darkModeToggle">
-           
+            Dark Mode
         </label>
     </div>
 
@@ -253,3 +252,4 @@
     </script>
 </body>
 </html>
+
