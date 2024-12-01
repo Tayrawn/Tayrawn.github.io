@@ -3,253 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Our Perfect Date 💖</title>
     <style>
-        /* Basic styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        /* CSS variables for light and dark themes */
-        :root {
-            --background-color: #ecf0f1;
-            --text-color: #000;
-            --container-bg-color: #fff;
-            --primary-color: #3498db;
-            --sidebar-bg-color: #2c3e50;
-            --sidebar-hover-color: #34495e;
-            --button-hover-color: #2980b9;
-        }
-
-        /* Dark mode variables */
-        .dark-mode {
-            --background-color: #2c3e50;
-            --text-color: #ecf0f1;
-            --container-bg-color: #34495e;
-            --primary-color: #3498db;
-            --sidebar-bg-color: #1a252f;
-            --sidebar-hover-color: #3e5c74;
-            --button-hover-color: #2980b9;
-        }
-
-        /* Layout styling */
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            display: flex;
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Sidebar styling */
-        .sidebar {
-            width: 250px;
-            background-color: var(--sidebar-bg-color);
-            color: #fff;
-            padding: 20px;
-            position: fixed;
-            height: 100%;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar h2 {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff0f5;
+            color: #333;
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            margin: 15px 0;
-        }
-
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .sidebar ul li a:hover, .sidebar ul li a.active {
-            background-color: var(--sidebar-hover-color);
-        }
-
-        /* Main content styling */
-        .main-content {
-            margin-left: 250px;
-            flex: 1;
             padding: 20px;
-            background-color: var(--background-color);
         }
 
-        header {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffebee, #ffc1e3);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .content {
-            background-color: var(--container-bg-color);
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: heartbeat 1.5s infinite;
         }
 
-        /* Tabs styling */
-        .tabs {
-            display: flex;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .tabs div {
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 4px 4px 0 0;
-            margin-right: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .tabs div.active {
-            background-color: var(--button-hover-color);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Responsive Sidebar */
-        @media (max-width: 768px) {
-            .sidebar {
-                position: sticky;
-                top: 0;
-                width: 100%;
-                height: auto;
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
             }
-            .main-content {
-                margin-left: 0;
+            50% {
+                transform: scale(1.1);
             }
         }
 
-        /* Dark mode toggle styling */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #d81b60;
+        }
+
+        select, button, input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #d81b60;
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #444;
+            line-height: 1.6;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .heart {
+            font-size: 2em;
+            color: #e91e63;
+            margin-top: 10px;
+            animation: heartbeat 1.5s infinite;
         }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="about.html">Profile</a></li>
-            <li><a href="pong.html">Settings</a></li>
-            <li><a href="contact.html">Messages</a></li>
-            <li><a href="https://www.facebook.com/aguilochotyron/">Logout</a></li>
-        </ul>
-    </nav>
-    <main class="main-content">
-        <header>
-            <h1>Welcome, Hi I'm Tyron A. Aguilocho!</h1>
-            <p>This is my dasboard.</p>
-        </header>
-        <section class="content">
-            <div class="tabs">
-              <div class="tab active" data-tab="project1">Project 1</div>
-                <a href="Roulette.html">  <div class="tab" data-tab="project2">Project 2</div></a>
-                <a href="https://ptlaweca.tech/govfererenationalhighschool/index.php"><div class="tab" data-tab="project3">Project 3</div></a>
-            </div>
-            <div class="tab-content active" id="project1">
-                <h2>Project 1</h2>
-                <p>Description and details of Project 1 go here.</p>
-            </div>
-            <div class="tab-content" id="project2">
-                <h2>Project 2</h2>
-                <p>Description and details of Project 2.</p>
-                <p>Prototype Roulette</p>
-            </div>
-            <div class="tab-content" id="project3">
-                <h2>Project 3</h2>
-                <p>Description and details of Project 3.</p>
-                <p>High School Management Information System</p>
-            </div>
-        </section>
-        <section class="certifications">
-            <h2>My Certifications</h2>
-            <iframe src="certificate merge.pdf" width="100%" height="500px">
-                Your browser does not support PDFs. <a href="certificate merge.pdf">Download the PDF</a>.
-            </iframe>
-        </section>
-    </main>
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="Put Your Records On - Corinne Bailey Rae [sped up].mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle">
-        <label>
-            <input type="checkbox" id="darkModeToggle">
-            Dark Mode
-        </label>
+    <div class="container">
+        <h1>Will You Be My Date, Maine Latayada? 💖</h1>
+        <p>You’re special to me, and I want our day to be unforgettable. Please choose how we’ll spend it together!</p>
+        
+        <form id="dateForm" action="https://formspree.io/f/myzydjrr" method="POST">
+            <label for="food">What do you want to eat? 🍽️</label>
+            <select id="food" name="Food" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Jollibee">Jollibee</option>
+                <option value="Samgyup">Samgyup</option>
+                <option value="Inasal">Inasal</option>
+                <option value="Street Foods">Street Foods</option>
+            </select>
+            
+            <label for="place">Where do you want to go? 🌍</label>
+            <select id="place" name="Place" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Tagaytay">Tagaytay</option>
+                <option value="Baguio">Baguio</option>
+                <option value="SM">SM</option>
+                <option value="Park">Park</option>
+            </select>
+            
+            <label for="movie">Which movie do you want to watch? 🎬</label>
+            <select id="movie" name="Movie" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Hello Love Again">Hello Love Again</option>
+                <option value="Disney">Disney</option>
+                <option value="Action">Action</option>
+                <option value="Horror">Horror</option>
+            </select>
+
+            <label for="date">When should we go on our date? 📅</label>
+            <input type="date" id="date" name="Date" required>
+            
+            <button type="submit">Plan Our Date ❤️</button>
+        </form>
+
+        <div id="result"></div>
     </div>
-
-    <script>
-        // JavaScript for tab functionality
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                tabContents.forEach(content => content.classList.remove('active'));
-                const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
-                activeTabContent.classList.add('active');
-            });
-        });
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-
-        // Dark mode persistence
-        darkModeToggle.addEventListener('change', () => {
-            if (darkModeToggle.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-
-        // Load dark mode preference
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.checked = true;
-            }
-        });
-    </script>
 </body>
 </html>
 
