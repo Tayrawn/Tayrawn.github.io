@@ -17,7 +17,7 @@
         :root {
             --background-color: #ecf0f1;
             --text-color: #333;
-            --container-bg-color: #fff;
+            --container-bg-color: rgba(255, 255, 255, 0.8);
             --primary-color: #3498db;
             --secondary-color: #2980b9;
             --progress-bg-color: #ddd;
@@ -28,7 +28,7 @@
         .dark-mode {
             --background-color: #2c3e50;
             --text-color: #ecf0f1;
-            --container-bg-color: #34495e;
+            --container-bg-color: rgba(52, 73, 94, 0.9);
             --primary-color: #3498db;
             --secondary-color: #2980b9;
             --progress-bg-color: #444;
@@ -37,6 +37,10 @@
         }
 
         body {
+            background-image: url('https://t4.ftcdn.net/jpg/07/00/45/57/360_F_700455737_9Rru6Zf8owv30oRQAl9zh9OoqlbFesVJ.jpg'); /* Updated image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             background-color: var(--background-color);
             color: var(--text-color);
             display: flex;
@@ -45,6 +49,19 @@
             min-height: 100vh;
             flex-direction: column;
             transition: background-color 0.3s, color 0.3s;
+            filter: blur(0px); /* Ensure no blur */
+        }
+
+        /* Overlay for better readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+            z-index: -1;
         }
 
         /* Header styling */
@@ -181,7 +198,6 @@
     <div class="dark-mode-toggle">
         <label>
             <input type="checkbox" id="darkModeToggle">
-           
         </label>
     </div>
 
@@ -250,4 +266,3 @@
     </script>
 </body>
 </html>
-
