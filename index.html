@@ -45,7 +45,6 @@
             display: flex;
             min-height: 100vh;
             position: relative;
-            flex-direction: column;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -68,9 +67,16 @@
             color: #fff;
             padding: 20px;
             position: fixed;
+            top: 0;
+            left: 0;
             height: 100%;
             z-index: 1;
-            transition: background-color 0.3s;
+            transition: transform 0.3s ease-in-out; /* Smooth transition for hiding/showing */
+        }
+
+        /* When the sidebar is hidden, move it off the screen */
+        .sidebar.hidden {
+            transform: translateX(-250px);
         }
 
         .sidebar h2 {
@@ -172,7 +178,7 @@
             cursor: pointer;
             z-index: 2;
         }
-        
+
         footer {
             background-color: var(--sidebar-bg-color);
             color: #fff;
@@ -181,11 +187,7 @@
             border-radius: 4px;
             margin-top: 20px;
             font-size: 14px;
-            position: relative;
-            z-index: 1;
-            flex-shrink: 0;
         }
-
     </style>
 </head>
 <body>
@@ -204,7 +206,7 @@
     <main class="main-content">
         <header>
             <h1>Welcome, Hi I'm Tyron A. Aguilocho!</h1>
-            <p>This is my dasboard.</p>
+            <p>This is my dashboard.</p>
         </header>
         <section class="content">
             <div class="tabs">
@@ -230,7 +232,7 @@
         <section class="certifications">
             <h2>My Certifications</h2>
             <iframe src="certificate merge.pdf" width="100%" height="500px">
-                Your browser does not support PDFs. <a href="certificate merge.pdf">Download the PDF</a> .
+                Your browser does not support PDFs. <a href="certificate merge.pdf">Download the PDF</a>.
             </iframe>
         </section>
     </main>
@@ -249,6 +251,7 @@
         const tabContents = document.querySelectorAll('.tab-content');
         const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
         const darkModeToggle = document.getElementById('darkModeToggle');
+        const sidebar = document.querySelector('.sidebar');
 
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -285,10 +288,23 @@
                 darkModeToggle.checked = true;
             }
         });
+
+        // Scroll event for hiding/showing sidebar
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scrolling down, hide the sidebar
+                sidebar.classList.add('hidden');
+            } else {
+                // Scrolling up, show the sidebar
+                sidebar.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
     </script>
 </body>
 <footer>
     <p>&copy; 2024 All rights reserved.</p>
 </footer>
-
 </html>
