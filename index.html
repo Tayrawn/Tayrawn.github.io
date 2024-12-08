@@ -37,15 +37,19 @@
 
         /* Layout styling */
         body {
-            background-image: url('images (1).jpeg'); /* Replace with your image */
+            background-image: url('https://t4.ftcdn.net/jpg/07/00/45/57/360_F_700455737_9Rru6Zf8owv30oRQAl9zh9OoqlbFesVJ.jpg'); /* Updated image URL */
             background-size: cover;
-            background-repeat: no-repeat;
+            background-position: center;
             background-attachment: fixed;
+            background-color: var(--background-color);
             color: var(--text-color);
             display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            position: relative;
+            flex-direction: column;
             transition: background-color 0.3s, color 0.3s;
+            filter: blur(0px); /* Ensure no blur */
         }
 
         /* Fallback background if image is not found */
@@ -179,15 +183,7 @@
             z-index: 2;
         }
 
-        footer {
-            background-color: var(--sidebar-bg-color);
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 4px;
-            margin-top: 20px;
-            font-size: 14px;
-        }
+        
     </style>
 </head>
 <body>
@@ -304,7 +300,5 @@
         });
     </script>
 </body>
-<footer>
-    <p>&copy; 2024 All rights reserved.</p>
-</footer>
+
 </html>
