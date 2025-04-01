@@ -299,6 +299,8 @@
             <input type="checkbox" id="darkModeToggle">
             <span>Dark Mode</span>
         </label>
+        <br>
+        <div class="digital-clock"></div>
     </div>
 
     <script>
@@ -319,7 +321,13 @@
                 activeTabContent.classList.add('active');
             });
         });
-
+       function updateClock() {
+    const now = new Date();
+    document.querySelector('.digital-clock').textContent = 
+        now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+setInterval(updateClock, 1000);
+updateClock();
         sidebarLinks.forEach(link => {
             link.addEventListener('click', () => {
                 sidebarLinks.forEach(l => l.classList.remove('active'));
