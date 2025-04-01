@@ -240,6 +240,191 @@
             gap: 8px;
             cursor: pointer;
         }
+        .chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 100;
+}
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 100;
+}
+.message-icon {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #3498db;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8em;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        color: white;
+    }
+
+    .message-icon:hover {
+        transform: scale(1.1);
+        background: #2980b9;
+    }
+
+    .chatbot-window {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 320px;
+        height: 450px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+        overflow: hidden;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .chatbot-window.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .chat-header {
+        background: #3498db;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .close-chat {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        cursor: pointer;
+        padding: 0 5px;
+    }
+
+    .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-input-container {
+        display: flex;
+        border-top: 1px solid #ddd;
+        background: white;
+    }
+
+    #chat-input {
+        flex: 1;
+        padding: 15px;
+        border: none;
+        outline: none;
+    }
+
+    .send-btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 0 20px;
+        cursor: pointer;
+        font-size: 1.2em;
+        transition: background 0.2s;
+    }
+
+    .send-btn:hover {
+        background: #2980b9;
+    }
+
+    .user-msg {
+        align-self: flex-end;
+        margin: 5px 0;
+        padding: 10px 15px;
+        background: #3498db;
+        color: white;
+        border-radius: 18px 18px 0 18px;
+        max-width: 80%;
+        word-wrap: break-word;
+    }
+
+    .ai-msg {
+        align-self: flex-start;
+        margin: 5px 0;
+        padding: 10px 15px;
+        background: #e0e0e0;
+        color: #333;
+        border-radius: 18px 18px 18px 0;
+        max-width: 80%;
+        word-wrap: break-word;
+    }
+
+    /* Dark mode support */
+    .dark-mode .chatbot-window {
+        background: #2c3e50;
+    }
+
+    .dark-mode .chat-header {
+        background: #2980b9;
+    }
+
+    .dark-mode .chat-messages {
+        background: #34495e;
+    }
+
+    .dark-mode .ai-msg {
+        background: #7f8c8d;
+        color: white;
+    }
+
+    .dark-mode .chat-input-container {
+        background: #2c3e50;
+        border-top: 1px solid #7f8c8d;
+    }
+
+    .dark-mode #chat-input {
+        background: #2c3e50;
+        color: white;
+    }
+
+    .dark-mode .send-btn {
+        background: #2980b9;
+    }
     </style>
 </head>
 <body>
@@ -284,6 +469,17 @@
                 <p>Description and details of Project 3.</p>
                 <p>High School Management Information System</p>
             </div>
+            <!-- Add this to your HTML (right before </body>) -->
+            <div class="message-icon">💬</div>
+            <div class="chatbot-window hidden">
+                <div class="chat-header">
+                    <span>Tyron's Static AI Assistant</span>
+                    <button class="close-chat">×</button>
+                </div>
+                <div class="chat-messages"></div>
+                <div class="chat-input-container">
+                    <input type="text" placeholder="Type your message..." id="chat-input">
+                    <button class="send-btn">↑</button>
         </section>
         <section class="certifications">
             <h2>My Certifications</h2>
@@ -373,6 +569,88 @@ updateClock();
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
+        // Updated JavaScript with your custom responses
+    const messageIcon = document.querySelector('.message-icon');
+    const chatbotWindow = document.querySelector('.chatbot-window');
+    const chatMessages = document.querySelector('.chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.querySelector('.send-btn');
+    const closeBtn = document.querySelector('.close-chat');
+
+    // Toggle chat window
+    messageIcon.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('active');
+        if (chatbotWindow.classList.contains('active') && chatMessages.children.length === 0) {
+            showWelcomeMessage();
+        }
+    });
+
+    // Close chat window
+    closeBtn.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+    });
+
+    // Send message function
+    function sendMessage() {
+        if (chatInput.value.trim() !== '') {
+            const userMessage = chatInput.value;
+            chatInput.value = '';
+            
+            // Display user message
+            chatMessages.innerHTML += `<div class="user-msg">${userMessage}</div>`;
+            
+            // Get bot response
+            const response = getBotResponse(userMessage.toLowerCase());
+            
+            // Simulate typing
+            setTimeout(() => {
+                chatMessages.innerHTML += `<div class="ai-msg">${response}</div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    }
+
+    // Send on button click or Enter key
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    // Your custom responses
+    function getBotResponse(message) {
+        const responses = {
+            "hello": "Hello there! 👋 I'm AI created by Tyron, how can I help you",
+            "hi": "Hi! What can I do for you?",
+            "name": "Nice to meet you!",
+            "what is this": "3 projects listed: 1) Project 1, 2) Roulette Game, 3) School Management System",
+            "resume": "You can click the resume, if you wanna know my background.",
+            "weather": "I don't have live weather data, but you could add a weather widget!",
+            "settings": "Settings can be accessed via the sidebar menu.",
+            "bye": "Goodbye! Come back if you have more questions!",
+            "default": "I'm a simple chatbox created by Tyron, if you want to ask something just reach me on Message can be accessed via sidebar menu, thank you"
+        };
+
+        // Check for exact matches first
+        if (responses[message]) {
+            return responses[message];
+        }
+        
+        // Check for partial matches
+        for (const [keyword, reply] of Object.entries(responses)) {
+            if (message.includes(keyword)) {
+                return reply;
+            }
+        }
+        
+        return responses.default;
+    }
+
+    // Updated welcome message
+    function showWelcomeMessage() {
+        const welcomeMsg = "Hi! I'm Tyron's dashboard assistant. Ask me about projects, resume, or anything!";
+        chatMessages.innerHTML += `<div class="ai-msg">${welcomeMsg}</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
     </script>
 </body>
 </html>
