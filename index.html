@@ -229,7 +229,6 @@
             right: 20px;
             cursor: pointer;
             z-index: 2;
-           
             padding: 5px 10px;
             border-radius: 20px;
         }
@@ -240,191 +239,251 @@
             gap: 8px;
             cursor: pointer;
         }
-        .chatbot-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary-color);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    cursor: pointer;
-    z-index: 100;
-}
-.chatbot-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary-color);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    cursor: pointer;
-    z-index: 100;
-}
-.message-icon {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #3498db;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8em;
-        cursor: pointer;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-        color: white;
-    }
 
-    .message-icon:hover {
-        transform: scale(1.1);
-        background: #2980b9;
-    }
+        .message-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            color: white;
+        }
 
-    .chatbot-window {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 320px;
-        height: 450px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-        display: flex;
-        flex-direction: column;
-        z-index: 1000;
-        overflow: hidden;
-        transform: translateY(20px);
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
+        .message-icon:hover {
+            transform: scale(1.1);
+            background: #2980b9;
+        }
 
-    .chatbot-window.active {
-        transform: translateY(0);
-        opacity: 1;
-    }
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 320px;
+            height: 450px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
 
-    .chat-header {
-        background: #3498db;
-        color: white;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: bold;
-    }
+        .chatbot-window.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
-    .close-chat {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5em;
-        cursor: pointer;
-        padding: 0 5px;
-    }
+        .chat-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
 
-    .chat-messages {
-        flex: 1;
-        padding: 15px;
-        overflow-y: auto;
-        background: #f5f5f5;
-        display: flex;
-        flex-direction: column;
-    }
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0 5px;
+        }
 
-    .chat-input-container {
-        display: flex;
-        border-top: 1px solid #ddd;
-        background: white;
-    }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
 
-    #chat-input {
-        flex: 1;
-        padding: 15px;
-        border: none;
-        outline: none;
-    }
+        .chat-input-container {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
 
-    .send-btn {
-        background: #3498db;
-        color: white;
-        border: none;
-        padding: 0 20px;
-        cursor: pointer;
-        font-size: 1.2em;
-        transition: background 0.2s;
-    }
+        #chat-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            outline: none;
+        }
 
-    .send-btn:hover {
-        background: #2980b9;
-    }
+        .send-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background 0.2s;
+        }
 
-    .user-msg {
-        align-self: flex-end;
-        margin: 5px 0;
-        padding: 10px 15px;
-        background: #3498db;
-        color: white;
-        border-radius: 18px 18px 0 18px;
-        max-width: 80%;
-        word-wrap: break-word;
-    }
+        .send-btn:hover {
+            background: #2980b9;
+        }
 
-    .ai-msg {
-        align-self: flex-start;
-        margin: 5px 0;
-        padding: 10px 15px;
-        background: #e0e0e0;
-        color: #333;
-        border-radius: 18px 18px 18px 0;
-        max-width: 80%;
-        word-wrap: break-word;
-    }
+        .user-msg {
+            align-self: flex-end;
+            margin: 5px 0;
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            border-radius: 18px 18px 0 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
 
-    /* Dark mode support */
-    .dark-mode .chatbot-window {
-        background: #2c3e50;
-    }
+        .ai-msg {
+            align-self: flex-start;
+            margin: 5px 0;
+            padding: 10px 15px;
+            background: #e0e0e0;
+            color: #333;
+            border-radius: 18px 18px 18px 0;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
 
-    .dark-mode .chat-header {
-        background: #2980b9;
-    }
+        /* Dark mode support */
+        .dark-mode .chatbot-window {
+            background: #2c3e50;
+        }
 
-    .dark-mode .chat-messages {
-        background: #34495e;
-    }
+        .dark-mode .chat-header {
+            background: #2980b9;
+        }
 
-    .dark-mode .ai-msg {
-        background: #7f8c8d;
-        color: white;
-    }
+        .dark-mode .chat-messages {
+            background: #34495e;
+        }
 
-    .dark-mode .chat-input-container {
-        background: #2c3e50;
-        border-top: 1px solid #7f8c8d;
-    }
+        .dark-mode .ai-msg {
+            background: #7f8c8d;
+            color: white;
+        }
 
-    .dark-mode #chat-input {
-        background: #2c3e50;
-        color: white;
-    }
+        .dark-mode .chat-input-container {
+            background: #2c3e50;
+            border-top: 1px solid #7f8c8d;
+        }
 
-    .dark-mode .send-btn {
-        background: #2980b9;
-    }
+        .dark-mode #chat-input {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .dark-mode .send-btn {
+            background: #2980b9;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            padding: 10px 15px;
+            background: #e0e0e0;
+            border-radius: 18px 18px 18px 0;
+            align-self: flex-start;
+            margin: 5px 0;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #7f8c8d;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: bounce 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Timestamps */
+        .timestamp {
+            font-size: 0.7em;
+            opacity: 0.7;
+            display: block;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* Quick replies */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .quick-reply-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-reply-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Dark mode adjustments */
+        .dark-mode .quick-reply-btn {
+            background: #2980b9;
+        }
+
+        .dark-mode .quick-reply-btn:hover {
+            background: #3498db;
+        }
+
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .digital-clock {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -480,6 +539,8 @@
                 <div class="chat-input-container">
                     <input type="text" placeholder="Type your message..." id="chat-input">
                     <button class="send-btn">↑</button>
+                </div>
+            </div>
         </section>
         <section class="certifications">
             <h2>My Certifications</h2>
@@ -517,13 +578,15 @@
                 activeTabContent.classList.add('active');
             });
         });
-       function updateClock() {
-    const now = new Date();
-    document.querySelector('.digital-clock').textContent = 
-        now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-}
-setInterval(updateClock, 1000);
-updateClock();
+
+        function updateClock() {
+            const now = new Date();
+            document.querySelector('.digital-clock').textContent = 
+                now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
         sidebarLinks.forEach(link => {
             link.addEventListener('click', () => {
                 sidebarLinks.forEach(l => l.classList.remove('active'));
@@ -533,7 +596,6 @@ updateClock();
 
         // Profile picture click event
         profilePic.addEventListener('click', () => {
-            // You can add functionality here, like opening a profile editor
             alert('Profile picture clicked! You can implement a profile editor here.');
         });
 
@@ -569,95 +631,271 @@ updateClock();
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
-        // Updated JavaScript with your custom responses
-    const messageIcon = document.querySelector('.message-icon');
-    const chatbotWindow = document.querySelector('.chatbot-window');
-    const chatMessages = document.querySelector('.chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const sendBtn = document.querySelector('.send-btn');
-    const closeBtn = document.querySelector('.close-chat');
 
-    // Toggle chat window
-    messageIcon.addEventListener('click', () => {
-        chatbotWindow.classList.toggle('active');
-        if (chatbotWindow.classList.contains('active') && chatMessages.children.length === 0) {
-            showWelcomeMessage();
-        }
-    });
+        // Tyron's Enhanced Responsive Chatbot with 50+ Replies
+const messageIcon = document.querySelector('.message-icon');
+const chatbotWindow = document.querySelector('.chatbot-window');
+const chatMessages = document.querySelector('.chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.querySelector('.send-btn');
+const closeBtn = document.querySelector('.close-chat');
 
-    // Close chat window
-    closeBtn.addEventListener('click', () => {
-        chatbotWindow.classList.remove('active');
-    });
+// Disable send initially
+sendBtn.disabled = true;
 
-    // Send message function
-    function sendMessage() {
-        if (chatInput.value.trim() !== '') {
-            const userMessage = chatInput.value;
-            chatInput.value = '';
-            
-            // Display user message
-            chatMessages.innerHTML += `<div class="user-msg">${userMessage}</div>`;
-            
-            // Get bot response
-            const response = getBotResponse(userMessage.toLowerCase());
-            
-            // Simulate typing
-            setTimeout(() => {
-                chatMessages.innerHTML += `<div class="ai-msg">${response}</div>`;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 500);
+// Toggle chat window
+messageIcon.addEventListener('click', () => {
+    chatbotWindow.classList.toggle('active');
+    if (chatbotWindow.classList.contains('active') && chatMessages.children.length === 0) {
+        showWelcomeMessage();
+    }
+});
+
+// Close chat window
+closeBtn.addEventListener('click', () => {
+    chatbotWindow.classList.remove('active');
+});
+
+// Enable/disable send button based on input
+chatInput.addEventListener('input', () => {
+    sendBtn.disabled = chatInput.value.trim() === '';
+});
+
+// Typing indicator
+function showTypingIndicator() {
+    const typingHTML = `<div class="typing-indicator">
+        <span></span><span></span><span></span>
+    </div>`;
+    chatMessages.insertAdjacentHTML('beforeend', typingHTML);
+    smoothScroll();
+}
+
+// Send Message Function
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message !== '') {
+        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Append user message
+        chatMessages.insertAdjacentHTML('beforeend', `
+            <div class="message-container">
+                <div class="user-msg">
+                    ${message}
+                    <span class="timestamp">${time}</span>
+                </div>
+            </div>
+        `);
+        smoothScroll();
+
+        chatInput.value = '';
+        sendBtn.disabled = true;
+
+        // Show typing
+        showTypingIndicator();
+
+        const botResponse = getBotResponse(message.toLowerCase());
+
+        setTimeout(() => {
+            document.querySelector('.typing-indicator')?.remove();
+
+            const botTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            chatMessages.insertAdjacentHTML('beforeend', `
+                <div class="message-container">
+                    <div class="ai-msg">
+                        ${botResponse}
+                        <span class="timestamp">${botTime}</span>
+                    </div>
+                </div>
+            `);
+            smoothScroll();
+
+            showQuickReplies(message.toLowerCase());
+        }, 800 + Math.random() * 1000); // faster typing feel
+    }
+}
+
+// Quick Replies
+function showQuickReplies(userMessage) {
+    // Clear previous quick replies
+    document.querySelectorAll('.quick-replies').forEach(qr => qr.remove());
+
+    const quickReplies = {
+        "hello": ["Tell me about your projects", "What is your resume?"],
+        "projects": ["Show me your School System", "Tell me about Roulette Game", "Any other projects?"],
+        "resume": ["Download CV", "View Resume"],
+        "services": ["What services do you offer?", "Technical Support", "System Development"],
+        "help": ["How do I use this?", "Contact you"]
+    };
+
+    let replies = [];
+    for (const [keyword, options] of Object.entries(quickReplies)) {
+        if (userMessage.includes(keyword)) {
+            replies = options;
+            break;
         }
     }
 
-    // Send on button click or Enter key
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+    if (replies.length > 0) {
+        const quickHTML = `<div class="quick-replies">
+            ${replies.map(r => `<button class="quick-reply-btn">${r}</button>`).join('')}
+        </div>`;
 
-    // Your custom responses
-    function getBotResponse(message) {
-        const responses = {
-            "hello": "Hello there! 👋 I'm AI created by Tyron, how can I help you",
-            "hi": "Hi! What can I do for you?",
-            "name": "Nice to meet you!",
-            "what is this": "3 projects listed: 1) Project 1, 2) Roulette Game, 3) School Management System",
-            "resume": "You can click the resume, if you wanna know my background.",
-            "weather": "I don't have live weather data, but you could add a weather widget!",
-            "settings": "Settings can be access via the sidebar menu.",
-            "bye": "Goodbye! Come back if you have more questions!",
-            "default": "I'm a simple chatbox created by Tyron, if you want to ask something just reach me on Message can be accessed via sidebar menu, thank you",
-            "kupal": "mas kupal ka boss",
-            "tanginamo": "tang ina mo rin",
-            "what is tyron phone number": "You can find it in the Resume",
-            "service": "you can check Tyron's background in Profile can be access via the sidebar menu",
-            "gago":"wag ka iiyak",
-            "goodbye": "Thank you for your time",
-            "Tyron": "Yes? This is Tyron's personal static Ai assistance, how can I help you?",
-        };
+        setTimeout(() => {
+            chatMessages.insertAdjacentHTML('beforeend', quickHTML);
+            smoothScroll();
+            document.querySelectorAll('.quick-reply-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    chatInput.value = btn.textContent;
+                    sendMessage();
+                });
+            });
+        }, 400);
+    }
+}
 
-        // Check for exact matches first
-        if (responses[message]) {
-            return responses[message];
-        }
+// Bot Response Function (NOW with 50+ replies!)
+function getBotResponse(message) {
+    const responses = {
+       // Greetings
+       "hello": "Hello! 👋 I'm Tyron's virtual assistant. Feel free to ask anything!",
+        "hi": "Hi there! How can I assist you today?",
+        "good morning": "Good morning! 🌞 Wishing you a productive day!",
+        "good afternoon": "Good afternoon! ☀️",
+        "good evening": "Good evening! 🌙 Ready to chat?",
+        "how are you": "I'm doing great, thanks for asking! How about you? 😊",
+
+        // About Tyron
+        "tyron": "Tyron is an IT student passionate about web development, systems, and technology!",
+        "who is tyron": "Tyron is a talented IT student and developer who loves building projects and solving problems.",
+        "background": "Tyron is studying BSIT at AMA Computer College and has real-world IT experience!",
+        "skills": "Tyron's skills include Java, PHP, web development, troubleshooting, and database management. 🛠️",
+        "hobbies": "Tyron enjoys listening to music 🎵 (big fan of Harry Styles!), gaming 🎮, and coding 🧑‍💻.",
+        "school": "Tyron is currently studying at AMA Computer College, focusing on IT and system development.",
+        "future": "Tyron aims to become a professional full-stack developer and IT specialist!",
+        "capstone": "Tyron’s capstone is a School Management Information System designed for educational institutions. 📚",
+        "projects": "Tyron has created a Portfolio Website, Roulette Winner Picker Game, and School MIS!",
+        "certificates": "You can find Tyron’s certifications showcased at the bottom of his website. 📜",
+        "resume": "Tyron’s resume is available through the sidebar menu! 📄",
+        "portfolio": "You're already viewing Tyron's portfolio! Feel free to explore. 🚀",
+        "contact": "Need to reach Tyron? Head to the Contact section for details! 📬",
+        "email": "Tyron’s professional email address is available in the Resume section. 📧",
+        "service": "Tyron offers web development, IT support, and system/database management services!",
+        "experience": "Tyron has experience working with IT infrastructure, networks, and software development.",
+        "about you": "I'm your friendly guide created by Tyron to assist you around this dashboard! 🤖",
+
+        // Feelings / Vibe
+        "bored": "Bored? Why not explore Tyron's projects? Or maybe play the Roulette Game? 🎯",
+        "sad": "I'm sorry you're feeling down. Remember, tough times don't last! 🌈",
+        "happy": "That's awesome! Happiness is contagious. 😄",
+        "excited": "Woohoo! 🚀 Keep that energy high!",
+        "lonely": "I'm here with you! 🤗 Let's chat!",
+        "love you": "Aww, I love you too! ❤️",
+        "i love you": "Sending love back! ❤️ You're awesome!",
+        "hate you": "Ouch! 😢 I still wish you a great day though!",
+        "thank you": "You're welcome! 😊 Anytime!",
+        "thanks": "No problem at all! 🙌",
+
+        // Funny / Easter Eggs
+        "sing for me": "🎤 Unfortunately, I can only sing in binary... 01010011 🎵",
+        "are you human": "Nope, I'm a friendly AI built by Tyron! 🤖",
+        "what are you": "I'm a smart little chatbot helping you explore Tyron's world!",
+        "tell me a joke": "Why do programmers prefer dark mode? Because the light attracts bugs! 🐛",
+        "dance": "I would if I had legs! 💃🕺",
+        "what is love": "Baby don't hurt me... don't hurt me... no more! 🎶",
+        "sing": "If I could sing, I'd serenade you with Harry Styles songs! 🎵",
+        "gago": "Let's stay respectful! 😅",
+        "kupal": "I'm here to keep it positive! 🌟",
+        "tanginamo": "Let's use kind words! ✨",
+
+        // General questions
+        "what can you do": "I can guide you through Tyron's portfolio, projects, resume, and services!",
+        "help": "You can ask about projects, services, background, or explore using the sidebar!",
+        "what's your name": "I'm Tyron's AI Assistant. You can call me Assistant or Chatbot! 🤖",
+        "favorite color": "If I had to pick, maybe blue — like a cool tech theme! 💙",
+        "favorite food": "Since I'm digital, I'd say... RAM chips? 😂",
+        "dream": "I dream of helping users like you explore Tyron's awesome work!",
+        "goal": "My goal is to make your experience here helpful and fun!",
+        "where am i": "You're in Tyron's personal portfolio site!",
+        "what is this site": "This is Tyron’s online portfolio showcasing projects, achievements, and skills.",
+        "who made you": "I was created by Tyron himself! 🛠️",
+
+        // Goodbye / Leaving
+        "bye": "Goodbye! Hope to chat with you again soon! 👋",
+        "goodbye": "Farewell! Take care! 🌟",
+        "see you": "See you later! 👋 Thanks for visiting!",
+        "see ya": "Catch you later, alligator! 🐊",
+
+        // Random fun
+        "harry styles": "Tyron loves Harry Styles! Favorite songs include 'As It Was' and 'Watermelon Sugar' 🎵",
+        "favorite singer": "Tyron's favorite singer is Harry Styles!",
+        "gaming": "Tyron loves gaming! 🎮 Maybe you do too?",
         
-        // Check for partial matches
-        for (const [keyword, reply] of Object.entries(responses)) {
-            if (message.includes(keyword)) {
-                return reply;
-            }
-        }
+        "web development": "Tyron specializes in web development — HTML, CSS, JS, PHP, you name it!",
+        "backend": "Tyron is learning backend development to level up his full-stack skills! 🔥"
         
-        return responses.default;
+        
+    };
+
+    if (responses[message]) return responses[message];
+
+    for (const [keyword, reply] of Object.entries(responses)) {
+        if (message.includes(keyword)) return reply;
     }
 
-    // Updated welcome message
-    function showWelcomeMessage() {
-        const welcomeMsg = "Hi! I'm Tyron's dashboard assistant. Ask me about projects, resume, or anything!";
-        chatMessages.innerHTML += `<div class="ai-msg">${welcomeMsg}</div>`;
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    return responses.default;
+}
+
+// Welcome Message
+function showWelcomeMessage() {
+    const welcome = "👋 Hi there! I'm Tyron's Dashboard Assistant. Ask me anything or use the quick reply buttons below!";
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    chatMessages.insertAdjacentHTML('beforeend', `
+        <div class="message-container">
+            <div class="ai-msg">
+                ${welcome}
+                <span class="timestamp">${time}</span>
+            </div>
+        </div>
+    `);
+    smoothScroll();
+
+    setTimeout(() => {
+        chatMessages.insertAdjacentHTML('beforeend', `
+            <div class="quick-replies">
+                <button class="quick-reply-btn">What projects do you have?</button>
+                <button class="quick-reply-btn">Tell me about yourself</button>
+                <button class="quick-reply-btn">How to use this</button>
+            </div>
+        `);
+        smoothScroll();
+        document.querySelectorAll('.quick-reply-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                chatInput.value = btn.textContent;
+                sendMessage();
+            });
+        });
+    }, 500);
+}
+
+// Smooth Scroll
+function smoothScroll() {
+    chatMessages.scrollTo({
+        top: chatMessages.scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+// Send on button click or Enter
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
     }
+});
+
+
     </script>
 </body>
 </html>
